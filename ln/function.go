@@ -63,7 +63,7 @@ func (f *Function) Paths3() Paths {
 	return Paths{path}
 }
 
-func (f *Function) Paths() Paths {
+func (f *Function) Paths2() Paths {
 	var paths Paths
 	fine := 1.0 / 256
 	for a := 0; a < 360; a += 5 {
@@ -84,7 +84,7 @@ func (f *Function) Paths() Paths {
 	return paths
 }
 
-func (f *Function) Paths1() Paths {
+func (f *Function) Paths() Paths {
 	var paths Paths
 	step := 1.0 / 8
 	fine := 1.0 / 64

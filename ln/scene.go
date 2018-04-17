@@ -1,5 +1,7 @@
 package ln
 
+import "fmt"
+
 type Scene struct {
 	Shapes []Shape
 	Tree   *Tree
@@ -45,15 +47,20 @@ func (s *Scene) Render(eye, center, up Vector, width, height, fovy, near, far, s
 }
 
 func (s *Scene) RenderWithMatrix(matrix Matrix, eye Vector, width, height, step float64) Paths {
+    fmt.Println("Compiling")
 	s.Compile()
 	paths := s.Paths()
+    fmt.Println("Chopping")
 	if step > 0 {
 		paths = paths.Chop(step)
 	}
+    fmt.Println("Filtering")
 	paths = paths.Filter(&ClipFilter{matrix, eye, s})
+    fmt.Println("Simplifying")
 	if step > 0 {
 		paths = paths.Simplify(1e-6)
 	}
+    fmt.Println("Transforming")
 	matrix = Translate(Vector{1, 1, 0}).Scale(Vector{width / 2, height / 2, 0})
 	paths = paths.Transform(matrix)
 	return paths

@@ -122,3 +122,19 @@ func (p Vector) SegmentDistance(v Vector, w Vector) float64 {
 	}
 	return v.Add(w.Sub(v).MulScalar(t)).Distance(p)
 }
+
+func vec(x float64, y float64, z float64) Vector {
+    return Vector{x, y, z}
+}
+
+func dot(a Vector, b Vector) float64 {
+    return a.Dot(b)
+}
+
+func cross(a Vector, b Vector) Vector {
+    return a.Cross(b)
+}
+
+func normalize(a Vector) Vector {
+    return a.Normalize()
+}

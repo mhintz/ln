@@ -143,9 +143,13 @@ func (p Paths) Chop(step float64) Paths {
 
 func (p Paths) Filter(f Filter) Paths {
 	var result Paths
-	for _, path := range p {
+    totalPaths := len(p)
+	for idx, path := range p {
+        // TODO: add goroutine here for parallel path filtering
+        fmt.Printf("\rFiltering path: %d/%d", idx, totalPaths)
 		result = append(result, path.Filter(f)...)
 	}
+    fmt.Println("")
 	return result
 }
 
